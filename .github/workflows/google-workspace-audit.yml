@@ -1,0 +1,91 @@
+name: Google Workspace audit
+
+on:
+  push:
+    branches: [main, codex/google-workspace-audit]
+    paths:
+      - develop/coding/google-workspace-audit/**
+      - .github/workflows/google-workspace-audit.yml
+  pull_request:
+    paths:
+      - develop/coding/google-workspace-audit/**
+      - .github/workflows/google-workspace-audit.yml
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Synthetic demo or configured live Google audit
+        type: choice
+        options: [demo, live]
+        default: demo
+        required: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: develop/coding/google-workspace-audit/scripts
+
+jobs:
+  test-and-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: develop/coding/google-workspace-audit/scripts/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: node cli.mjs demo --out ../runs/demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-google-workspace-audit
+          path: develop/coding/google-workspace-audit/runs/demo/
+          retention-days: 7
+          if-no-files-found: error
+
+  live:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'live'
+    needs: test-and-demo
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Require private artifact destination for live data
+        if: github.event.repository.private != true
+        working-directory: .
+        run: |
+          echo 'Live audit artifacts contain Google cell values and script source. Use a private repository for live mode, or run locally.'
+          exit 1
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: develop/coding/google-workspace-audit/scripts/package-lock.json
+      - run: npm ci --ignore-scripts
+      - name: Collect and analyze using read-only Google scopes
+        id: audit
+        continue-on-error: true
+        env:
+          GOOGLE_OAUTH_TOKEN_JSON: ${{ secrets.GOOGLE_OAUTH_TOKEN_JSON }}
+          GOOGLE_AUDIT_CONFIG_JSON: ${{ vars.GOOGLE_AUDIT_CONFIG_JSON }}
+        run: |
+          node --input-type=module -e "import {writeFileSync} from 'node:fs'; if(!process.env.GOOGLE_AUDIT_CONFIG_JSON || !process.env.GOOGLE_OAUTH_TOKEN_JSON) throw new Error('Configure the Google audit secret and variable first.'); writeFileSync(process.env.RUNNER_TEMP + '/audit-config.json', process.env.GOOGLE_AUDIT_CONFIG_JSON, {mode:0o600});"
+          node cli.mjs audit --config "$RUNNER_TEMP/audit-config.json" --out ../runs/live
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.audit.outcome != 'skipped' && steps.audit.outcome != ''
+        with:
+          name: private-google-workspace-audit
+          path: develop/coding/google-workspace-audit/runs/live/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Preserve failed or partial audit status
+        if: always() && steps.audit.outcome == 'failure'
+        run: exit 2

@@ -1,0 +1,19 @@
+{
+  "name": "google-workspace-audit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "demo": "node cli.mjs demo --out ../runs/demo",
+    "audit": "node cli.mjs audit",
+    "mcp": "node mcp.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "acorn": "^8.15.0",
+    "google-auth-library": "^10.0.0",
+    "zod": "^3.25.0"
+  }
+}

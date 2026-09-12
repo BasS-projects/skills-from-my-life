@@ -30,6 +30,7 @@ Each lifecycle has the same categories:
 | git-feature-branch-hygiene | develop | `develop/SE/git-feature-branch-hygiene` |
 | youtube-status-official-api | develop | `develop/coding/wrangler/youtube-status-official-api` |
 | worker-production-verification | develop | `develop/coding/wrangler/worker-production-verification` |
+| google-workspace-audit | develop | `develop/coding/google-workspace-audit` |
 
 ## Available Skills
 
@@ -62,6 +63,7 @@ Still being shaped:
 - `develop/SE/git-feature-branch-hygiene` - keep unrelated git work on separate branches
 - `develop/coding/wrangler/youtube-status-official-api` - require official YouTube Data API evidence for channel, live, upload, and ownership checks
 - `develop/coding/wrangler/worker-production-verification` - verify scheduled or stateful Workers from deployed runtime evidence, bindings, logs, and remote state
+- [`develop/coding/google-workspace-audit`](develop/coding/google-workspace-audit/SKILL.md) - read Google Sheets cells/formulas and Apps Script source with restricted OAuth, summarize coverage, and explore dependency links; includes CLI, snapshot MCP and a GitHub Actions demo. See [setup](develop/coding/google-workspace-audit/references/setup.md).
 
 ### Security warning
 
@@ -103,7 +105,7 @@ Or let Codex auto-detect the skill from context.
 
 ## Use In ChatGPT
 
-For chat-only use, copy the contents of any `SKILL.md` file (e.g. `launch/daily/skeptical-research/SKILL.md`) and paste it into a custom instruction, project instruction, custom GPT instruction, or the top of a new chat. Each v1 skill is self-contained, so no extra reference files are required.
+For chat-only use, copy the contents of an instruction-only `SKILL.md` file (e.g. `launch/daily/skeptical-research/SKILL.md`) and paste it into a custom instruction, project instruction, custom GPT instruction, or the top of a new chat. Skills with executable helpers, such as `google-workspace-audit`, require their complete folder and runtime setup; pasting instructions alone does not grant Google API access.
 
 ## Design Principles
 

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Google Sheets & Script Audit"
+  short_description: "Trace sheet formulas and Apps Script dependencies"

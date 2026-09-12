@@ -1,0 +1,9 @@
+scripts/node_modules/
+runs/
+.secrets/
+config.local.json
+token*.json
+credentials*.json
+client_secret*.json
+.env
+.env.*

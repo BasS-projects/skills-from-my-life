@@ -1,0 +1,5 @@
+{
+  "spreadsheets": [{ "id": "YOUR_SPREADSHEET_ID" }],
+  "scripts": [{ "id": "YOUR_SCRIPT_ID", "spreadsheetId": "YOUR_SPREADSHEET_ID" }],
+  "cellsPerPage": 20000
+}
