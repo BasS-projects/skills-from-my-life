@@ -6,7 +6,7 @@ description: Guard structural, refactoring, dependency, contract, and configurat
 # Change Guard
 
 Version: 0.1.0
-Status: draft
+Status: launch
 Reviewed: 2026-05-16
 Reviewer: bas
 

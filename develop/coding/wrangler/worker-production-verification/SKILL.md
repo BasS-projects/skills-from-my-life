@@ -102,13 +102,13 @@ A strong final answer includes:
 For this repo, useful commands are:
 
 ```bash
-cd /Users/bas/all_work/full_vibe_code_proj/discord-bot-server/white-tree-b6b4
+cd <path-to-your-worker-repo>
 npm test
 npm run typecheck
 npm run deploy
 npx wrangler secret list
 npx wrangler tail --format pretty
-npx wrangler kv key get "channel:UCKbPi3L0PMVqfYLK0osg8eQ:state" --binding YOUTUBE_STATE_KV --remote --text
+npx wrangler kv key get "channel:<channel-id>:state" --binding <kv-binding> --remote --text
 ```
 
 These commands are examples, not the boundaries of the skill. Adapt the same evidence pattern to other Workers, schedules, webhooks, queues, or state stores.
