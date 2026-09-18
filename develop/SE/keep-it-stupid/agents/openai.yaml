@@ -1,0 +1,5 @@
+interface:
+  display_name: "keep-it-stupid"
+  short_description: "Simplify existing code when requested by removing demonstrat"
+policy:
+  allow_implicit_invocation: true

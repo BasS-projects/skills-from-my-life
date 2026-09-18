@@ -1,0 +1,5 @@
+interface:
+  display_name: "post-mortem"
+  short_description: "Write an evidence-based account of a significant fixed bug o"
+policy:
+  allow_implicit_invocation: true

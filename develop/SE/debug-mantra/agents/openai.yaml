@@ -1,0 +1,5 @@
+interface:
+  display_name: "debug-mantra"
+  short_description: "Diagnose a concrete bug using reproduction, fail-path tracin"
+policy:
+  allow_implicit_invocation: true

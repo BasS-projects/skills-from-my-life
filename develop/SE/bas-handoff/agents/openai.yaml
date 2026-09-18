@@ -1,0 +1,5 @@
+interface:
+  display_name: "bas-handoff"
+  short_description: "Write or resume a short evidence-bearing checkpoint when wor"
+policy:
+  allow_implicit_invocation: true

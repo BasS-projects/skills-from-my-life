@@ -1,0 +1,5 @@
+interface:
+  display_name: "grill-engineering"
+  short_description: "Ask one short batch about data flow, state and failure behav"
+policy:
+  allow_implicit_invocation: true

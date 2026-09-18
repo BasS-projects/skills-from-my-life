@@ -1,0 +1,5 @@
+interface:
+  display_name: "verify-before-done"
+  short_description: "Match completion claims to actual test, command or UI eviden"
+policy:
+  allow_implicit_invocation: true

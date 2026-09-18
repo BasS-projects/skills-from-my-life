@@ -1,0 +1,5 @@
+interface:
+  display_name: "scrutinize"
+  short_description: "Review a proposed design, code change or PR by tracing real "
+policy:
+  allow_implicit_invocation: true

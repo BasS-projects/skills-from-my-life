@@ -1,0 +1,5 @@
+interface:
+  display_name: "grill-design"
+  short_description: "Ask one concise batch of design questions to clarify scope, "
+policy:
+  allow_implicit_invocation: true

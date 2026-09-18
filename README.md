@@ -129,3 +129,19 @@ Before adding a new skill or expanding an existing one:
 - Prefer one self-contained `SKILL.md` for v1.
 - Add references only when they reduce repeated context or make the skill easier to maintain.
 - Keep examples practical and decision-oriented.
+
+## Core skills from personal workflows
+
+Eight core skills from the BasOS work are maintained under `develop/SE/`.
+`basos-workflow` is excluded; `handoff` is exported as `bas-handoff`.
+See [PROVENANCE.md](PROVENANCE.md) for authorship and source limitations.
+Shared principles are in [CONSTITUTION.md](CONSTITUTION.md).
+
+- [keep-it-stupid](develop/SE/keep-it-stupid/SKILL.md)
+- [grill-design](develop/SE/grill-design/SKILL.md)
+- [grill-engineering](develop/SE/grill-engineering/SKILL.md)
+- [verify-before-done](develop/SE/verify-before-done/SKILL.md)
+- [bas-handoff](develop/SE/bas-handoff/SKILL.md)
+- [debug-mantra](develop/SE/debug-mantra/SKILL.md)
+- [scrutinize](develop/SE/scrutinize/SKILL.md)
+- [post-mortem](develop/SE/post-mortem/SKILL.md)
